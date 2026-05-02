@@ -11,33 +11,16 @@ export default function Cars({ user }) {
 
   useEffect(() => {
     fetchCars();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchCars = async () => {
     const { data } = await supabase
       .from("cars")
       .select("*")
-      .eq("status", "approved"); // ← only approved cars
+      .eq("status", "approved");
 
     setCars(data || []);
-  };
-
-  const rentCar = async (carId) => {
-    const start = new Date();
-    const end = new Date();
-    end.setDate(start.getDate() + 3);
-
-    await supabase.from("reservations").insert([
-      {
-        client_id: user.id,
-        car_id: carId,
-        start_date: start.toISOString().split("T")[0],
-        end_date: end.toISOString().split("T")[0],
-        status: "pending",
-      },
-    ]);
-
-    alert("Car booked!");
   };
 
   const startIndex = (page - 1) * carsPerPage;

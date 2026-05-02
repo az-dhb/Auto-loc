@@ -6,9 +6,10 @@ export default function Bookings({ user }) {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    if (!user) return;
-    fetchBookings();
-  }, [user]);
+  if (!user) return;
+  fetchBookings();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [user]);
 
   const fetchBookings = async () => {
     const { data } = await supabase

@@ -19,66 +19,60 @@ export default function Dashboard({ user }) {
 
   useEffect(() => {
     if (!user) return;
-    fetchAll();
+
+    const fetchProfile = async () => {
+      const { data, error } = await supabase
+        .from("clients")
+        .select("*")
+        .eq("id", user.id)
+        .single();
+      if (error) return;
+      setProfile(data);
+    };
+
+    const fetchReservations = async () => {
+      const { data, error } = await supabase
+        .from("reservations")
+        .select(`
+          *,
+          cars (
+            id, brand, model,
+            image_url, price_per_day,
+            location, seats, fuel_type, transmission
+          )
+        `)
+        .eq("client_id", user.id)
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        showToast("Failed to load reservations", "error");
+        return;
+      }
+
+      const list = data || [];
+      setReservations(list);
+      setStats({
+        total: list.length,
+        pending: list.filter((r) => r.status === "pending").length,
+        confirmed: list.filter((r) => r.status === "confirmed").length,
+        cancelled: list.filter((r) => r.status === "cancelled").length,
+      });
+    };
+
+    const fetchMyCars = async () => {
+      const { data, error } = await supabase
+        .from("cars")
+        .select("*")
+        .eq("owner_id", user.id)
+        .order("created_at", { ascending: false });
+      if (error) return;
+      setMyCars(data || []);
+    };
+
+    fetchProfile();
+    fetchReservations();
+    fetchMyCars();
   }, [user]);
-
-  const fetchAll = async () => {
-    await Promise.all([fetchProfile(), fetchReservations(), fetchMyCars()]);
-  };
-
-  /* ---------------- PROFILE ---------------- */
-  const fetchProfile = async () => {
-    const { data, error } = await supabase
-      .from("clients")
-      .select("*")
-      .eq("id", user.id)
-      .single();
-
-    if (error) return;
-    setProfile(data);
-  };
-
-  /* ---------------- RESERVATIONS ---------------- */
-  const fetchReservations = async () => {
-    const { data, error } = await supabase
-      .from("reservations")
-      .select(`
-        *,
-        cars (
-          id, brand, model,
-          image_url, price_per_day,
-          location, seats, fuel_type, transmission
-        )
-      `)
-      .eq("client_id", user.id)
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      showToast("Failed to load reservations", "error");
-      return;
-    }
-
-    const list = data || [];
-    setReservations(list);
-    setStats({
-      total: list.length,
-      pending: list.filter((r) => r.status === "pending").length,
-      confirmed: list.filter((r) => r.status === "confirmed").length,
-      cancelled: list.filter((r) => r.status === "cancelled").length,
-    });
-  };
-
-  /* ---------------- MY CARS ---------------- */
-  const fetchMyCars = async () => {
-    const { data, error } = await supabase
-      .from("cars")
-      .select("*")
-      .eq("owner_id", user.id)
-      .order("created_at", { ascending: false });
-
-    if (error) return;
-    setMyCars(data || []);
-  };
 
   if (!profile) return <div className="dash-loading">Loading dashboard...</div>;
 

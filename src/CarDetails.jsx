@@ -14,9 +14,9 @@ export default function CarDetails({ user }) {
   const [returnDate, setReturnDate] = useState("");
 
   useEffect(() => {
-    fetchCar();
-  }, []);
-
+  fetchCar();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
   const fetchCar = async () => {
     const { data, error } = await supabase
       .from("cars")

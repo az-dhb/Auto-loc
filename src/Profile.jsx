@@ -11,71 +11,69 @@ export default function Profile({ user }) {
 
   useEffect(() => {
     if (!user) return;
+
+    const fetchProfile = async () => {
+      const { data, error } = await supabase
+        .from("clients")
+        .select("*")
+        .eq("id", user.id)
+        .single();
+
+      if (error) {
+        showToast("Failed to load profile", "error");
+        return;
+      }
+
+      setProfile(data);
+    };
+
+    const fetchReservations = async () => {
+      const { data, error } = await supabase
+        .from("reservations")
+        .select(`
+          *,
+          cars (
+            id,
+            brand,
+            model,
+            image_url,
+            price_per_day,
+            location,
+            seats,
+            fuel_type,
+            transmission
+          )
+        `)
+        .eq("client_id", user.id)
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        showToast("Failed to load reservations", "error");
+        return;
+      }
+
+      setReservations(data || []);
+    };
+
+    const fetchMyCars = async () => {
+      const { data, error } = await supabase
+        .from("cars")
+        .select("*")
+        .eq("owner_id", user.id)
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        showToast("Failed to load your cars", "error");
+        return;
+      }
+
+      setMyCars(data || []);
+    };
+
     fetchProfile();
     fetchReservations();
     fetchMyCars();
   }, [user]);
-
-  /* ---------------- PROFILE ---------------- */
-  const fetchProfile = async () => {
-    const { data, error } = await supabase
-      .from("clients")
-      .select("*")
-      .eq("id", user.id)
-      .single();
-
-    if (error) {
-      showToast("Failed to load profile", "error");
-      return;
-    }
-
-    setProfile(data);
-  };
-
-  /* ---------------- RESERVATIONS ---------------- */
-  const fetchReservations = async () => {
-    const { data, error } = await supabase
-      .from("reservations")
-      .select(`
-        *,
-        cars (
-          id,
-          brand,
-          model,
-          image_url,
-          price_per_day,
-          location,
-          seats,
-          fuel_type,
-          transmission
-        )
-      `)
-      .eq("client_id", user.id)
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      showToast("Failed to load reservations", "error");
-      return;
-    }
-
-    setReservations(data || []);
-  };
-
-  /* ---------------- MY CARS ---------------- */
-  const fetchMyCars = async () => {
-    const { data, error } = await supabase
-      .from("cars")
-      .select("*")
-      .eq("owner_id", user.id)
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      showToast("Failed to load your cars", "error");
-      return;
-    }
-
-    setMyCars(data || []);
-  };
 
   /* ---------------- AVATAR ---------------- */
   const uploadAvatar = async (e) => {
@@ -106,7 +104,6 @@ export default function Profile({ user }) {
 
     setUploading(false);
     showToast("Profile updated", "success");
-    fetchProfile();
   };
 
   /* ---------------- LICENSE ---------------- */
@@ -141,7 +138,6 @@ export default function Profile({ user }) {
 
     setUploading(false);
     showToast("License uploaded", "success");
-    fetchProfile();
   };
 
   if (!profile) return <div className="profile-loading">Loading...</div>;
@@ -178,7 +174,7 @@ export default function Profile({ user }) {
         <div className="section-title">Driver License</div>
 
         {profile.license_url ? (
-          <img className="license" src={profile.license_url} />
+          <img className="license" src={profile.license_url} alt="driver license" />
         ) : (
           <p>No license uploaded</p>
         )}
@@ -246,7 +242,7 @@ export default function Profile({ user }) {
               <div key={r.id} className="row">
 
                 <div className="car">
-                  <img src={car?.image_url} />
+                  <img src={car?.image_url} alt={`${car?.brand} ${car?.model}`} />
                   <div>
                     <strong>{car?.brand} {car?.model}</strong>
                     <small>{car?.location}</small>
