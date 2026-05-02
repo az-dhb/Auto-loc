@@ -17,7 +17,7 @@ export default function Layout({ user }) {
       <header className="navbar">
 
         <div className="nav-left">
-          <img src="/logo.png" className="logo-img" />
+          <img src="/logo.png" className="logo-img" alt="logo" />
 
           <h2>My Ride</h2>
 
