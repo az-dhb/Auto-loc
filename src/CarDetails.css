@@ -1,0 +1,487 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ROOT */
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #f6f7fb;
+  font-family: Arial, sans-serif;
+}
+
+/* PAGE */
+.details-page {
+  width: 100%;
+  min-height: 100vh;
+
+  /* FIXED */
+  padding: 950px 40px 60px;
+
+  background: #f6f7fb;
+
+  overflow-x: hidden;
+}
+/* BACK BUTTON */
+.back-btn {
+  margin-bottom: 25px;
+
+  padding: 12px 20px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: white;
+
+  color: #333;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+
+  background: #7b2ff7;
+
+  color: white;
+
+  box-shadow: 0 10px 25px rgba(123,47,247,0.2);
+}
+/* CONTAINER */
+.details-container {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 2fr 1fr;
+
+  gap: 30px;
+
+  align-items: start;
+}
+
+/* LEFT SIDE */
+.details-left {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* HERO IMAGE */
+/* HERO IMAGE */
+.hero-image {
+  width: 100%;
+  max-width: 100%;
+
+  height: 420px;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  background: #eee;
+
+  box-shadow: 10px 10px 24px rgba(0, 0, 0, 0.315);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* IMAGE */
+.hero-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  display: block;
+
+
+  transition:
+    transform 0.5s ease,
+    filter 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.hero-image:hover img {
+  transform: scale(1.08);
+}
+/* HEADER */
+.car-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.car-header h1 {
+  font-size: 38px;
+  color: #111;
+}
+
+.price {
+  margin-top: 10px;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  color: #7b2ff7;
+}
+
+/* AVAILABILITY */
+.availability {
+  padding: 10px 18px;
+
+  border-radius: 999px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.ok {
+  background: #d9f8df;
+  color: #1d8b3a;
+}
+
+.no {
+  background: #ffe1e1;
+  color: #d12626;
+}
+
+/* SPECS GRID */
+.specs-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 16px;
+}
+
+/* SPEC CARD */
+.spec-card {
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 22px;
+
+  text-align: center;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.418);
+
+  transition: 0.3s ease;
+}
+
+.spec-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 10px 25px rgba(
+    0,
+    0,
+    0,
+    0.08
+  );
+}
+
+.spec-card span {
+  font-size: 28px;
+
+  display: block;
+
+  margin-bottom: 10px;
+}
+
+.spec-card h4 {
+  font-size: 15px;
+  color: #333;
+}
+
+/* CONTENT CARD */
+.content-card {
+  background: white;
+
+  border-radius: 22px;
+
+  padding: 30px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.433);
+}
+
+.content-card h2 {
+  margin-bottom: 18px;
+
+  font-size: 24px;
+
+  color: #111;
+}
+
+.content-card p {
+  color: #666;
+
+  line-height: 1.8;
+
+  font-size: 15px;
+}
+
+/* FEATURES */
+.features-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 14px;
+}
+
+.features-grid span {
+  background: #f4f4f8;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  font-size: 14px;
+
+  color: #333;
+
+  transition: 0.3s;
+}
+
+.features-grid span:hover {
+  transform: translateY(-2px);
+
+  background: #ececff;
+}
+
+/* BOOKING CARD */
+.booking-card {
+  position: sticky;
+
+  top: 100px;
+
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 30px;
+
+  box-shadow: 0 10px 30px rgba(
+    0,
+    0,
+    0,
+    0.433
+  );
+}
+
+.booking-card h2 {
+  font-size: 34px;
+
+  margin-bottom: 24px;
+
+  color: #111;
+}
+
+/* DATE GROUP */
+.date-group {
+  display: flex;
+
+  flex-direction: column;
+
+  margin-bottom: 18px;
+}
+
+.date-group label {
+  margin-bottom: 8px;
+
+  font-size: 14px;
+
+  color: #555;
+}
+
+.date-group input {
+  padding: 14px;
+
+  border-radius: 14px;
+
+  border: 1px solid #ddd;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.date-group input:focus {
+  border-color: #7b2ff7;
+
+  box-shadow: 0 0 10px rgba(
+    123,
+    47,
+    247,
+    0.15
+  );
+}
+
+/* BUTTON */
+.booking-card button {
+  width: 100%;
+
+  padding: 16px;
+
+  border: none;
+
+  border-radius: 16px;
+
+  background: linear-gradient(
+    135deg,
+    #7b2ff7,
+    #00c6ff
+  );
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.booking-card button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 25px rgba(
+    123,
+    47,
+    247,
+    0.25
+  );
+}
+
+/* DISABLED BUTTON */
+.disabled-btn {
+  opacity: 0.6;
+
+  cursor: not-allowed !important;
+}
+
+.disabled-btn:hover {
+  transform: none !important;
+
+  box-shadow: none !important;
+}
+
+/* MICROCOPY */
+.microcopy {
+  margin-top: 14px;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  color: #777;
+}
+
+/* LOADING */
+.loading {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 24px;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7b2ff7;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ececec;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+
+  .details-container {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-card {
+    position: relative;
+    top: 0;
+  }
+
+  .specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  .details-page {
+    padding: 100px 20px 40px;
+  }
+
+  .hero-image {
+    height: 260px;
+  }
+
+  .car-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .specs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .car-header h1 {
+    font-size: 28px;
+  }
+
+}
