@@ -55,4 +55,4 @@ Ces données respectent un schéma fixe, sont fortement typées, et peuvent êtr
 - Les **photos du permis de conduire** uploadées par les clients depuis leur profil (bucket `driver-licenses`)
 - La **photo de profil** de chaque client (bucket `pfp`)
 
-Ces fichiers sont des objets binaires sans schéma défini. Ils ne peuvent pas être interrogés comme une base de données — ils sont simplement stockés et référencés par leur URL publique dans les tables PostgreSQL.
+Ces fichiers sont des objets binaires sans schéma défini. Ils ne peuvent pas être interrogés comme une base de données ils sont simplement stockés et référencés par leur URL publique dans les tables PostgreSQL.
