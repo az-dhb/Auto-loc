@@ -11,7 +11,7 @@
 🔗[ [auto-loc.vercel.app]([https://auto-loc.vercel.app](https://auto-9dpwfkfmq-az-dhbs-projects.vercel.app/auth))](https://auto-gm07wpvc0-az-dhbs-projects.vercel.app/)
 
 ## Identifiants de Test
-- **Email :** a_dehbi@estin.dz
+- **Email :** mhameddehbi30@gmail.com
 - **Mot de passe :** 00000000
 
 ---
