@@ -37,7 +37,7 @@ Avec **Vercel** et **Supabase**, on bascule vers un modèle **OPEX** (Operationa
 
 ### 2. Comment Vercel gère-t-il la scalabilité par rapport à un Data Center physique ?
 
-Un data center physique local nécessite une infrastructure lourde : serveurs rack, systèmes de climatisation, onduleurs, équipes de maintenance, et une configuration manuelle pour chaque montée en charge. Si le trafic double soudainement, il faut commander, installer et configurer de nouveaux serveurs — un processus qui peut prendre plusieurs semaines.
+Un data center physique local nécessite une infrastructure lourde : serveurs rack, systèmes de climatisation, onduleurs, équipes de maintenance, et une configuration manuelle pour chaque montée en charge. Si le trafic double soudainement, il faut commander, installer et configurer de nouveaux serveurs un processus qui peut prendre plusieurs semaines.
 
 **Vercel** repose sur une architecture **serverless** distribuée sur un réseau mondial de points de présence (edge network). Chaque requête est traitée par une fonction déployée automatiquement au plus proche de l'utilisateur. En cas de pic de trafic par exemple si de nombreux clients consultent les voitures disponibles en même temps Vercel instancie automatiquement de nouvelles fonctions en quelques millisecondes, sans aucune intervention manuelle. Il n'y a pas de serveur à allumer, pas de climatisation à gérer, pas de capacité à prévoir à l'avance.
 
